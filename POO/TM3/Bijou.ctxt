@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Bijou
+comment1.params=
+comment1.target=Bijou()
+comment2.params=valeur\ marque
+comment2.target=Bijou(int,\ java.lang.String)
+comment3.params=
+comment3.target=int\ valeur()
+comment4.params=
+comment4.target=java.lang.String\ marque()
+numComments=5

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Task
+comment0.text=\n\ D\u00E9crivez\ votre\ classe\ Task\ ici.\n\n\ @author\ (votre\ nom)\n\ @version\ (un\ num\u00E9ro\ de\ version\ ou\ une\ date)\n
+comment1.params=day\ hour\ minute\ second
+comment1.target=Task(long,\ long,\ long,\ long)
+comment2.params=
+comment2.target=boolean\ time_out()
+comment3.params=
+comment3.target=void\ set_as_finished()
+numComments=4

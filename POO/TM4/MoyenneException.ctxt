@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=MoyenneException
+comment1.params=argv
+comment1.target=void\ main(java.lang.String[])
+comment2.params=argv
+comment2.target=int\ moyenne(java.lang.String[])
+numComments=3
