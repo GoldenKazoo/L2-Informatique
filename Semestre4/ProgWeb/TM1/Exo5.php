@@ -2,7 +2,7 @@
 
 class Monster
 {
-    private $var;
+    private $name;
     private $catch_phrase;
 
     public function __construct($name, $catch_phrase)
@@ -34,8 +34,7 @@ class Monster
 
 $dracula = new Monster ("Dracula", "je vais te mordre");
 
-echo "Graaouuu je suis $dracula->name $dracula->get_catch_phrase";
-// echo "Graouuu je suis " . $dracula->get_name() . ", " . $dracula->get_catch_phrase();
+echo "Graouuu je suis " . $dracula->get_name() . ", " . $dracula->get_catch_phrase();
 
 
 
