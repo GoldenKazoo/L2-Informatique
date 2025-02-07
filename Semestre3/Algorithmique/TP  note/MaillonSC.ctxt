@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=MaillonSC
+comment0.text=\n\ Classe\ MaillonSC\ utilis\u00E9\ par\ la\ classe\ ListeSC\n\ \n\ ATTENTION\:\ vous\ ne\ devez\ pas\ modifier\ ce\ fichier.\n
+comment1.params=val
+comment1.target=MaillonSC(int)
+comment2.params=val\ suiv
+comment2.target=MaillonSC(char,\ MaillonSC)
+numComments=3
