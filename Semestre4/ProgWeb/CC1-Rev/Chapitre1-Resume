@@ -263,3 +263,66 @@ POST: les données sont transmises discrètement, seul le nom de la page appara�
 - Vérifier systématiquement les données reçus par rapport à leur type, intervalle des valeurs et caractères spéciaux.
 - Toujours supposer que tout n'est pas correct et accepter uniquement si c'est vraiment bon.
 - Protégez votre application contre les vulnérabilités XSS (injections HTML).
+
+> Comment marchent les echanges HTTP 
+
+Lorsqu'on tape l'adresse d'une page web dans la barre de navigation
+  - Le navigateur cherche sur le DNS (Nom de domaine systeme, c'est comme un anuaire telephonique)
+  - Le navigateur envoie une requete HTTP au serveur, c'est a dire unb message dans lequel il demande une copie de la page web cherchee,
+  - Si le serveur accepte la requete du client, il envoie un message "200 ok" qui signifie que la demande est acceptee,
+  et il commence a envoyer la page web en "morceaux"
+
+Les codes de reponse HTTP indiquent si la requete HTTP a ete acceptee ou pas.
+Ces codes se divisent en groupes:
+• information(1..)
+• succes de la requete(2..)
+• redirection(3..)
+• messages d’erreurs - problemes du Client, page non trouvee (4..)
+• messages d’erreurs – problemes du Serveur (5..)
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+Visualiser les échanges http sur Chrome :
+Avec Chrome, ouvrez une page web quelconque,
+click droit sur la page -> Inspect Element -> Networks
+Relancez la page et selectionnez n’importe quel element a gauche,
+puis selectionnez Headers.
+Exemple 1 :
+https://fr.m.wikipedia.org/wiki/Aide:Redirect?redirect=no
+Exemple 2 :
+https://www.i2m.univ-amu.fr/perso/laura.fontanella/realizabilityworkshop2019/
+
+> Quelques modeles
+----------------------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<body>
+<?php
+echo "Bonjour";
+?>
+</body>
+</html>
+------------------------------------------------------------------------------
+<?php
+echo "
+<!DOCTYPE html>
+<html>
+<head>
+<title>Document</title>
+</head>
+<body>
+<p>Bonjour</p>
+</body>
+</html>
+";
+-------------------------------------------------------------------------------
+<?php
+echo "Bonjour";
+
+> Comment voir ma page PHP ? 
+
+Dans un terminal, tape : php -S localhost : 8080
+Dans un navigateur (Firefox, Chrome, Safari): http://localhost :8080/nom_de_votre_page.php

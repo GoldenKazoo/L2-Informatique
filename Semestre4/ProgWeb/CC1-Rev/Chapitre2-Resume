@@ -1,0 +1,24 @@
+> Comment se connecter a une Base de donnee :
+Tout d'abord il faut savoir comment passer le contenue d'un fichier sql vers un fichier sqlite
+Pour ca on fait : sqlite3 exemple.sqlite < exemple.sq
+
+Dans un fichier .php on commence par établir la connection avec la table en indiquant le chemin du fichier .sqlite, puis
+on crée un data-object pour la BD
+
+<?php
+  $file = "./bd/departements.sqlite";
+  try
+  {
+    $bd = new PDO("sqlite:$file");
+  }
+  catch(PDOException $e)
+  {
+    exit("Non connecté à la BD : ".$e->getMessage());
+  }
+
+Ensuite on fait la requete sqlite avec la methode query (dans le try) :
+  $requeteSQLITE="SELECT * FROM departements";
+  $requete = $bd->query($requeteSQLITE);
+
+On peut maintenant afficher les données de la table sur la page avec un foreach sachant que les éléments de $requete
+sont des arrays correspondants aux lignes du résultat de la requete.
