@@ -1,0 +1,265 @@
+> C'est quoi la structure physique du Web ? :
+
+- C'est des Serveurs HTTP (qui sont integre au reseau Internet) qui hebergent des sites web
+- C'est des Clients utilisant un navigateur (Comme Firefox, Safari, Google Chrome, etc)
+
+> De quoi est compose un site internet ? :
+
+- Il est heberge sur un serveur HTTP chez un fournisseur de service Internet
+- Il a une adresse qu'on appelle URL (https://www.u-pec.fr/)
+- Il contient des pages statiques (Partie HTML et CSS)
+- Il contient des pages dynamique (PHP ou autre)
+
+> C'est quoi HTTP ? :
+
+- C'est un protocole de transmission d'info depuis et vers des sites internet
+- HTTPS est sa version version securise, on ne peut pas intercepter les donnees
+- HTTP2 permet de faire charger les pages plus vite
+
+> C'est quoi une URL ? :
+
+- Comme on l'a dit c'est une adresse
+> L'accronyme vient de Universal Ressource Locator, on y trouve
+  - Login
+  – Mot de passe
+  – Adresse du serveur
+  – Port
+  – Chemin de la page
+  – Paramètres de requête
+ex : http://nom:mdp@nom.de.serveur:port/adresse/du/site/page.php?id=3
+ex : http://www.yahoo.com/
+
+> C'est le contenue statique et dynamique au juste ? :
+
+- Statique, la page (le fichier) reste inchangée à chaque chargement 
+(e.g. HTML, CSS, Javascript, images, etc). Un fichier correspondant à cette ressource 
+se trouve sur le serveur Web.
+- Dynamique, la page (le fichier) peut changer à chaque
+chargement. La page (ou le fichier) correspondante est générée (produite) à la volée à 
+chaque appel à l’aide d’un langage de programmation.
+
+> Lien entre Serveur et Base de Donnee (BD) ? :
+
+L'utilisation de PHP pour des applications Web nécessite un
+serveur et généralement une BD.
+> Serveurs HTTP
+  – Apache
+  – NGNIX
+  – Serveur PHP interne
+> Bases de données
+  – MySql (~MariaDB)
+  - PostgreSQL
+  – Sqlite
+  – …
+
+> Ok mais c'est quoi un fichier PHP ? :
+- En gros, il faut lui mettre l'extension .php (fichier.php)
+- Il faut preserver du cote du HTTP son chemin (si repertoire courant, donc la ou on est juste le
+nom du fichier, sinon /dossier1/dossier2/fichier.php)
+- Au debut du fichier on met la balise suivante <?php
+
+> Exit / Sortie en PHP c'est quoi ? :
+
+- Rien de vraiment nouveau, la sortie se fait avec print ou echo
+  echo "Bonjour";
+  print("Bonjour");
+
+> C'est les variables en PHP ? :
+
+- Une variable est un nom qui commence par $
+- Les variables en PHP n'ont pas de type (en realite il est deduit dynamiquement)
+- On peut faire des operations arithmetiques classique, des manipulation de chaines etc 
+- Un exemple
+  $x = 3+4;
+  print("Le résultat est: ".$x); // concaténation
+  print("Le résultat est: $x"); // substitution
+- A noter que la substitution a l'instar de bash ne se fait pas lorsqu'on utilise  les singles
+quotes ' '
+
+> Parlons des tableaux un peu :
+
+- En PHP ne doit pas nescessairement mettre un nombre pour un index
+  $tab[3] = 10;
+  $tab1["Avril"]=4;
+- Il existe pas mal de fonctions pour manipuler les tableaux
+
+ > Tu connais les if mais voici un exemple :
+  echo "...";
+  $d=date("D"); // Recuperation du jour d'aujourd'hui
+  if ($d=="Fri") /* Si on est le vendredi */
+  {
+  echo "Hello!<br />";
+  echo "Have a nice weekend!";
+  }
+  else echo "Have a nice day!";
+  echo "...";
+
+ > Tu connais peut etre pas le Switch donc voici un exemple :
+  switch ($x)
+  {
+  case 1: echo "N 1"; break{;
+  case 2: echo "N 2"; break;
+  case 3: echo "N 3"; break;
+  case "one": echo "1 en anglais";
+  default: print("Autre");
+  }
+
+> Tu connais les boucles mais voici un exemple :
+  while($i<=5)
+  {
+  echo "Le nb est $i <br />";
+  $i++;
+  }
+
+> Mais est ce que tu connais le foreach ? Dans le doute un exemple :
+
+- On l'apprecie grandement pour les indexes qui ne sont pas numerique (A tout hasard une String)
+  foreach ($tab as $valeur)
+  {
+    print("la valeur courante est: $valeur");
+  }
+
+- Pour récupérer également la clef on fait 
+  foreach ($tab as $clef=>$val)
+  {
+  print("<tr><td>$clef</td><td>$val</td></tr>");
+  }
+
+> Comment on fait des fonctions en PHP ? :
+
+- On utilise function
+  function essai($nom,$prenom)
+  {
+    echo $nom . $prenom . "<br />";
+  }
+  essai("Jean", "Lemoigne");
+
+Comment on gere les exceptions en PHP ? :
+
+- On va faire un classico classique try / throw / catch
+
+  try
+  {
+    if (condition)
+      throw new Exception("Skill Issue");
+    catch (Exception $e)
+    {
+
+    }
+  }
+
+> Des includes ? C'est quoi ca ? :
+- On requiere au fichier dans le include d'etre inclus du coup dans le fichier qu'on utilise
+  include("nom_fichier");
+  include_once("nom_fichier");
+  require("nom_fichier");
+  require_once("nom_fichier");
+
+> On a des Objets en PHP ? :
+- Oui tu peux creer des class avec des attributs des methodes, tout ca tout ca
+  class Exemple
+  {
+  // attribut
+  public $var = 'valeur par défaut';
+  // méthode
+  public function affiche()
+  {
+    echo $this->var;
+  }
+}
+Ne jamais faire confiance aux données externes (reçus
+via $_GET ou $_POST)
+› Vérifier systématiquement les données reçus par rapport
+à leur type, intervalle des valeurs et caractères spéciaux.
+› Toujours supposer que tout n'est pas correct et accepter
+uniquement si c'est vraiment bon.
+› Protégez votre application contre les vulnérabilités XSS
+(injections HTML).
+> Si j'ai des objets je peux faire des constucteurs ? :
+- Oui et voici comment on fait
+  class Exemple2
+  { 
+  //attribut
+  public $bar;
+  public function __construct() {
+  // méthode
+  $this->bar = function() {
+  return 42;
+  };
+  }
+}
+
+> D'accord mais comment j'instancie une classe ? :
+  $instance = new Exemple();
+  // En utilisant une variable:
+  $className = "Exemple";
+  $instance = new $className();
+  $obj = new Exemple2();
+  echo $obj->var . "\n" . $obj->bar();
+
+> Acces statique et constantes ? C'est quoi ca ?
+- Parfois on a pas envie d'instancier une classe pour avoir acces a un element d'une classe
+C'est la qu'interviennent les access statique et les constantes.
+
+class Exemple3
+{
+  public static $bar2;
+  const GRANDE_VALEUR=50;
+}
+Exemple3::bar2 = 10;
+Exemple3::bar2 = Exemple3::GRANDE_VALEUR;
+
+> L'heritage en PHP ?
+- Oui on peut faire klaxonner son chat si on veut, voici comment faire
+
+class Cat extends Car
+{
+  // Redéfinition de la méthode du parent
+  function affiche()
+  {
+    echo "Extending class\n";
+    parent::affiche(); //equivalent a super
+  }
+}
+
+> Ok je veux faire rentree des donnees dans un formulaire et les exploiter, comment on fait ?
+- L’entrée se fait par le biais des formulaires HTML.
+- L’information qui y est saisie se retrouve dans les tableaux $_GET et $_POST
+
+> Comment je fais un formulaire ?
+
+<form action="action.php" method="post"> // On precise la page ou on va transmettre les infos et la methode (post ou get)
+Nom:
+<input type="text" name="nom"> //nom c'est le nom de l'indice du tableau de post ici
+Prénom:
+<input type="text" name="prenom"> // prenom c'est le nom de l'indice du tableau de post ici
+<input type="submit" value="Envoyer">
+</form>
+
+> Ok je vais exploiter le formulaire dans mon fichier action.php
+
+echo "...";
+if (isset($_POST["nom"]) && isset($_POST["prenom"]))
+{
+  $nom = $_POST["nom"];
+  $prenom = $_POST["prenom"];
+  print("Bonjour $prenom $nom");
+}
+echo "...";
+
+> Ok mais c'est quoi la difference entre POST et GET
+
+GET: toutes les variables apparaissent dans la barre d'adresse du navigateur
+http://le.site.fr/chemin/action.php?nom=Jean&prenom=Le%20gra
+nd
+– Avantage – accès direct à une page dynamique.
+– Normalement, la méthode GET doit être idempotente
+– donc pas de modification d'état.
+POST: les données sont transmises discrètement, seul le nom de la page apparaît.
+
+> Moi je tiens a la securite, il faut faire attention a des trucs
+
+- Ne jamais faire confiance aux données externes (reçus via $_GET ou $_POST)
+- Vérifier systématiquement les données reçus par rapport à leur type, intervalle des valeurs et caractères spéciaux.
+- Toujours supposer que tout n'est pas correct et accepter uniquement si c'est vraiment bon.
+- Protégez votre application contre les vulnérabilités XSS (injections HTML).
