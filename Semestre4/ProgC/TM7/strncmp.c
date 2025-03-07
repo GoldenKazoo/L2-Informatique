@@ -1,4 +1,4 @@
-int ft_strncmp(char *str1, char *str2)
+int ft_strncmp(char *str1, char *str2, int n)
 {
     int i;
 

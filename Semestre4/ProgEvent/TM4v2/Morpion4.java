@@ -1,13 +1,14 @@
 import java.awt.event.*;  
 import javax.swing.*;
+import java.text.SimpleDateFormat;
 
 interface ModelUpdate {
     public void update(int x, int y);
 }
 
-class Model
-{
+class Model {
     private int player = 1;
+    // 0 for empty, 1 for player 1 and 2 for player 2.
     private int[][] cells = new int[3][3];
     private void changePlayer() {
         player = (this.player == 1) ? 2 : 1;
@@ -24,8 +25,6 @@ class Model
         return cells[x][y];
     }
     public boolean play(int x, int y) {
-        var c = new Channel<String>("Monke");
-        c.getNext();
         if (cells[x][y] != 0)
             return false;
         cells[x][y] = player;
@@ -49,10 +48,14 @@ class Model
     }
 }
 
-void main() {  
+public class Morpion4
+{
+   public static void main(String[] args) {  
     var cellSize = 50;
+    var channel = "monke";
+    var eventloop = new StringChannelEventLoopWithThread("Monke");
     var f = new JFrame("Morpion");
-    f.setSize(cellSize*3,cellSize*3);
+    f.setSize(cellSize*4,cellSize*4);
     var m = new Model();
     JButton[][] buttons = new JButton[3][3];
 
@@ -64,6 +67,11 @@ void main() {
             final int Y = y;
             b.addActionListener(e -> {
                     m.play(X,Y);
+                    eventloop.onMessageHandler(new MessageHandler() {
+                        public void handleMessage(String msg) {
+                        System.out.println("Message reçu 1: " + msg);
+                    }
+                    });
             });
             f.add(b);
             buttons[x][y] = b;
@@ -86,4 +94,5 @@ void main() {
     f.setLayout(null);  
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
     f.setVisible(true);
+}
 }

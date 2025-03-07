@@ -2,23 +2,37 @@
 #include <stdlib.h>
 #include <string.h>
 
+void	*ft_memcpy(void *dest, const void *src, size_t size)
+{
+	size_t	i;
+	char	*d;
+	char	*s;
+
+	i = 0;
+	d = (char *) dest;
+	s = (char *) src;
+	if (!src && !dest)
+		return (NULL);
+	while (i < size)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	return (d);
+}
+
 void* array_alloc(size_t len, size_t sz)
 {
-    void *new_addr;
+    size_t *new_addr;
 
-    size_t jump;
-
-    jump = 0;
     if (len == 0 || sz == 0)
         return NULL;
     new_addr = malloc (sz * len + 2 * sizeof(size_t));
     if (!new_addr)
         return NULL;
-        memcpy(new_addr, (void)sz, 8);
-        new_addr = new_addr + 8;
-        memcpy(new_addr, len, 8);
-        new_addr = new_addr + 8;
-    return (new_addr);
+    new_addr[0] = len;
+    new_addr[1] = sz;
+    return (new_addr + 2);
 }
 
 void array_free(void *a)
@@ -26,14 +40,14 @@ void array_free(void *a)
     if (a != NULL)
         return ;
     else
-    free(a);
+    free((size_t *)a - 2);
 }
 
 size_t array_element_size(void* a)
 {
     size_t  size_element;
     
-    size_element = (size_t) sizeof(a[0]);
+    size_element = (size_t) sizeof(size_t);
     return (size_element);
 }
 
@@ -41,24 +55,33 @@ size_t array_length(void* a)
 {
     size_t  size_element;
     
-    size_element = (size_t) sizeof(a[1]);
+    size_element = (size_t) sizeof(size_t);
     return (size_element);   
 }
 
 void* array_make(size_t len, size_t sz, const void* p)
 {
-    void *new_addr;
-
-    if (len == 0 || sz == 0)
-        return NULL;
-    new_addr = malloc (sizeof(sz) * len + 2);
-    if (!new_addr)
-        return NULL;
-    while (new_addr)
+    char *new_addr = array_alloc(len,  sz);
+    for(int i = 0; i < len; i++)
     {
-        new_addr = p;
-        new_addr++;
+        memcpy(new_addr + i * sz, p, sz);
     }
+    return (new_addr);
+}
+
+array_init(size_t len, size_t sz, void (*f)(int i, void* ei))
+{
+    char *new_addr = array_alloc(len,  sz);
+    for(int i = 0; i < len; i++)
+    {
+        f(i, new_addr + i * sz);
+    }
+    return (new_addr);
+}
+
+void array_iter(void (*f)(const void* ei), const void* a)
+{
+    
 }
 
 int main() {
@@ -82,3 +105,5 @@ int main() {
  
   return EXIT_SUCCESS;
 }
+
+
