@@ -1,0 +1,38 @@
+Graphes
+
+    Graphes non-orientés :
+        Qu'est-ce que c'est ? : Un ensemble de points (sommets) reliés par des lignes (arêtes). Une ligne peut relier un point à lui-même (boucle).
+        Degrés : Le nombre de lignes attachées à un point.
+        Graphes simples : Pas de boucles ni de lignes doubles.
+        Isomorphisme : Deux graphes sont similaires s'ils peuvent être redessinés de manière identique.
+        Graphes complets : Tous les points sont reliés entre eux.
+        Graphes planaires : Peuvent être dessinés sans croisement de lignes.
+        Sous-graphes : Une partie d'un graphe.
+        Graphes connexes : Tous les points sont reliés par un chemin.
+        Graphes bipartis : Les points peuvent être divisés en deux groupes sans lignes internes.
+        Matrice d'adjacence : Tableau montrant les connexions entre les points.
+        Arbres : Graphes connexes sans boucles.
+
+    Graphes orientés :
+        Qu'est-ce que c'est ? : Les lignes ont une direction (flèches).
+        Degrés : Nombre de flèches entrant et sortant d'un point.
+        Graphes fortement connexes : Tous les points sont reliés par des chemins dirigés.
+        Graphes acycliques : Pas de boucles dirigées.
+        Tri topologique : Ordre des points respectant les flèches.
+
+Relations
+
+    Relations binaires :
+        Qu'est-ce que c'est ? : Ensemble de paires entre deux ensembles.
+        Propriétés : Réflexive, symétrique, antisymétrique, transitive.
+        Représentation : Graphe avec des flèches montrant les paires.
+        Opérations : Union, intersection, soustraction, composition.
+
+    Relations d'équivalence :
+        Qu'est-ce que c'est ? : Réflexive, symétrique, transitive.
+        Classes d'équivalence : Groupes d'éléments équivalents.
+
+    Relations d'ordre :
+        Qu'est-ce que c'est ? : Réflexive, antisymétrique, transitive.
+        Ordre total/partiel : Tous les éléments comparables (total) ou non (partiel).
+        Diagramme de Hasse : Représentation simplifiée de l'ordre.
